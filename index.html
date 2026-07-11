@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G-TEC Jain Keerti Education - Typing Contest</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- LOGIN MODAL OVERLAY -->
+  <div class="modal-overlay" id="login-modal">
+    <div class="modal-card">
+      <div class="brand-header">
+        <img src="asset/logo.png" alt="GTEC Jain Keerti Education Logo" class="brand-logo">
+        <span class="branch-tag">Goregaon West Branch</span>
+      </div>
+      
+      <h2>Portal Login</h2>
+      <p class="modal-subtitle">Please select your details to enter the speed typing contest.</p>
+      
+      <div class="form-group">
+        <label for="batch-select">1. Select Batch</label>
+        <select id="batch-select" onchange="onBatchChange()">
+          <option value="">-- Fetching Batches... --</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="name-select">2. Select Student Name</label>
+        <select id="name-select" disabled>
+          <option value="">-- Select Batch First --</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="level-select">3. Select Contest Level</label>
+        <select id="level-select">
+          <option value="Easy" data-time="120">Easy (2 Minutes)</option>
+          <option value="Medium" data-time="180">Medium (3 Minutes)</option>
+          <option value="Hard" data-time="300">Hard (5 Minutes)</option>
+        </select>
+      </div>
+
+      <button id="start-btn" class="primary-btn" onclick="confirmLogin()" disabled>🚀 Start Typing Contest</button>
+      <div id="login-status" class="status"></div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTEST CONTAINER -->
+  <div class="container blurred" id="contest-container">
+    <header class="main-header">
+      <div class="header-branding">
+        <img src="asset/logo.png" alt="GTEC Jain Keerti Education Logo" class="header-logo">
+        <div>
+          <h1>Speed Typing Contest</h1>
+          <p class="branch-title">G-TEC Jain Keerti Education — Goregaon West</p>
+        </div>
+      </div>
+      <div class="user-badge" id="user-badge">
+        <span>Participant: <strong>--</strong></span>
+        <span>Batch: <strong>--</strong></span>
+        <span>Level: <strong>--</strong></span>
+      </div>
+    </header>
+
+    <!-- Live Performance Metrics -->
+    <div class="metrics-bar">
+      <div class="metric-card">
+        <span class="label">Time Remaining</span>
+        <span class="value" id="timer">--:--</span>
+      </div>
+      <div class="metric-card">
+        <span class="label">Gross WPM</span>
+        <span class="value" id="wpm">0</span>
+      </div>
+      <div class="metric-card">
+        <span class="label">Accuracy</span>
+        <span class="value" id="accuracy">100%</span>
+      </div>
+    </div>
+
+    <!-- Text Display Box -->
+    <div class="passage-box" id="text-display"></div>
+
+    <!-- Typing Input -->
+    <div class="input-area">
+      <textarea 
+        id="typing-input" 
+        placeholder="Type here when ready... timer starts on your first keypress!" 
+        autocomplete="off" 
+        autocorrect="off" 
+        capitalization="off" 
+        spellcheck="false"
+        onpaste="return false;"
+        disabled></textarea>
+    </div>
+
+    <!-- Controls & Feedback -->
+    <div class="controls">
+      <button id="reset-btn" class="secondary-btn" onclick="initTest()">🔄 Reset Passage</button>
+      <button id="submit-btn" class="primary-btn" onclick="submitScore()" disabled>📤 Submit Official Score</button>
+    </div>
+
+    <div id="status-message" class="status"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
